@@ -14,8 +14,8 @@ public class ModifyFile {
 		// TODO Auto-generated method stub
 		
 		try {
-			BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("/Users/vmac/Documents/atomfiles/contact.json")));
-			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File("/Users/vmac/Documents/atomfiles/contact_modified.json")));
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("input.json")));
+			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File("output.json")));
 			
 			int i = 3;
 			

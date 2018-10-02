@@ -1,8 +1,12 @@
 package com.vmac.hibernate.persistancecore;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -22,6 +26,10 @@ import com.vmac.hibernate.persistancecore.entities.Product;
 public class EntityPersister {
 
 	Session session;
+	
+	public EntityPersister() {
+		
+	}
 
 	public EntityPersister(Session session) {
 		this.session = session;
@@ -83,8 +91,9 @@ public class EntityPersister {
 		
 		Gson gson = new Gson();
 		
-		FileReader reader = new FileReader(new File("/Users/vmac/Documents/atomfiles/airquality.json"));
-		AirQuality airQuality = gson.fromJson(reader, AirQuality.class);
+		//FileReader reader = new FileReader(new File("/Users/vmac/Documents/atomfiles/airquality.json"));
+		//AirQuality airQuality = gson.fromJson(reader, AirQuality.class);
+		AirQuality airQuality = gson.fromJson(getJsonFromUrl("https://data.cdc.gov/api/views/cjae-szjv/rows.json?accessType=DOWNLOAD"), AirQuality.class);
 		
 		for(List<Object> obj : airQuality.getData()) {
 			AirQualityData airQualityData = new AirQualityData();
@@ -113,6 +122,39 @@ public class EntityPersister {
 			
 			session.save(airQualityData);
 		}
+	}
+	
+	public String getJsonFromUrl(String jsonurl) {
+		try {
+			URL url = new URL(jsonurl);
+			
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			
+			connection.setRequestMethod("GET");
+		     //add request header
+			connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+		     int responseCode = connection.getResponseCode();
+		     System.out.println("\nSending 'GET' request to URL : " + url);
+		     System.out.println("Response Code : " + responseCode);
+		     BufferedReader in = new BufferedReader(
+		             new InputStreamReader(connection.getInputStream()));
+		     String inputLine;
+		     StringBuffer response = new StringBuffer();
+		     while ((inputLine = in.readLine()) != null) {
+		     	response.append(inputLine);
+		     }
+		     in.close();
+
+		     return response.toString();
+		     
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			return "";
 	}
 
 }
