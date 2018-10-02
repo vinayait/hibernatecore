@@ -22,7 +22,7 @@
 		<mapping class="com.vmac.hibernate.persistancecore.entities.Product" />
 		<mapping class="com.vmac.hibernate.persistancecore.entities.Phone" />
 		<mapping class="com.vmac.hibernate.persistancecore.entities.Book" />
-		<mapping class="com.vmac.hibernate.persistancecore.entities.AirQualityData" />
+		<mapping class="com.vmac.hibernate.persistancecore.entities.JsonDataEntity" />
 
 	</session-factory>
 

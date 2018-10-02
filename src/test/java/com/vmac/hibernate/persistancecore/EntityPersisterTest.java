@@ -6,7 +6,9 @@ public class EntityPersisterTest extends TestCase{
 	
 	public void testGetJsonFromUrl() {
 		EntityPersister entityPersister = new EntityPersister();
-		entityPersister.getJsonFromUrl("https://data.lacity.org/api/views/nxs9-385f/rows.json");
+		String data = entityPersister.getJsonFromUrl("https://data.oregon.gov/api/views/i8h7-mn6v/rows.json?accessType=DOWNLOAD");
+		assertTrue(data.length() > 0);
+		System.out.println(data);
 	}
 
 }

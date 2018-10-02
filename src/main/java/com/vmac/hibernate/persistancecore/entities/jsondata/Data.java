@@ -1,4 +1,4 @@
-package com.vmac.hibernate.persistancecore.entities.airquality;
+package com.vmac.hibernate.persistancecore.entities.jsondata;
 
 public class Data {
 	

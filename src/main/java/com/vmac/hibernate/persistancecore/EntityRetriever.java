@@ -42,5 +42,9 @@ public class EntityRetriever {
 	public void getBook() {
 		
 	}
+	
+	public void getJsonData() {
+		
+	}
 
 }

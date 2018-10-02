@@ -22,6 +22,7 @@ public class App {
 	public static void main(String[] args) throws Exception {
 		App app = new App();
 		app.setUp();
+		System.exit(0);
 	}
 
 	protected void setUp() throws Exception {
@@ -39,11 +40,13 @@ public class App {
 			EntityPersister entityPersister = new EntityPersister(session);
 			EntityRetriever entityRetriever = new EntityRetriever(session);
 
-			entityPersister.saveContact("insert into contact", false, "https://www.oracle.com", "vinay", "pandey", "");
-			entityPersister.saveProduct("Laser", "332230029", "this laser generates 200 F temperatures");
-			entityPersister.savePhone("218-968-8776", PhoneType.LAND_LINE);
-			entityPersister.saveBook("War of Worlds", "H.G. Wells");
-			entityPersister.saveAirQualityData();
+			//entityPersister.saveContact("insert into contact", false, "https://www.oracle.com", "vinay", "pandey", "");
+			//entityPersister.saveProduct("Laser", "332230029", "this laser generates 200 F temperatures");
+			//entityPersister.savePhone("218-968-8776", PhoneType.LAND_LINE);
+			//entityPersister.saveBook("War of Worlds", "H.G. Wells");
+			entityPersister.saveJsonData("https://data.cdc.gov/api/views/cjae-szjv/rows.json?accessType=DOWNLOAD");
+			entityPersister.saveJsonData("https://data.oregon.gov/api/views/i8h7-mn6v/rows.json?accessType=DOWNLOAD");
+			entityPersister.saveJsonData("https://data.sfgov.org/api/views/88g8-5mnd/rows.json?accessType=DOWNLOAD");
 
 			session.getTransaction().commit();
 			

@@ -1,8 +1,8 @@
-package com.vmac.hibernate.persistancecore.entities.airquality;
+package com.vmac.hibernate.persistancecore.entities.jsondata;
 
 import java.util.List;
 
-public class AirQuality {
+public class JsonData {
 	
 	MetaData meta;
 	List<List<Object>> data;
